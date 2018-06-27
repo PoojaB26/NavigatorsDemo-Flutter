@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 void main() { // 1
   runApp( // 2
       new MaterialApp( //3
@@ -131,9 +132,17 @@ class Screen3 extends StatelessWidget {
 
            new RaisedButton(
              onPressed: (){
-               Navigator.of(context).pushNamedAndRemoveUntil('/screen1', (Route<dynamic> route) => false);
+               Navigator.of(context).pushNamedAndRemoveUntil('/screen4', (Route<dynamic> route) => false);
              },
              child: new Text("Push Named and Remove Until"),),
+
+           new RaisedButton(
+             onPressed: (){
+               Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute( builder: (BuildContext context) => new Screen4()), ModalRoute.withName('/screen1'));
+             },
+             child: new Text("Push and Remove Until"),),
+
+
            new RaisedButton(
              onPressed: (){
                Navigator.popAndPushNamed(context, '/screen1');
@@ -173,6 +182,23 @@ class Screen4 extends StatelessWidget {
                 Navigator.popUntil(context, ModalRoute.withName('/screen2'));
               },
               child: new Text("popUntil"),),
+
+            new RaisedButton(onPressed: ()async{
+              String value = await Navigator.push(context, new MaterialPageRoute<String>(
+                  builder: (BuildContext context) {
+                    return new Center(
+                      child: new GestureDetector(
+                          child: new Text('OK'),
+                          onTap: () { Navigator.pop(context, "dfsd"); }
+                      ),
+                    );
+                  }
+              )
+              );
+              print(value);
+
+            },
+            child: new Text("Return"),)
 
           ],
         ),
