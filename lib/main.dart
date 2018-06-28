@@ -112,6 +112,7 @@ class Screen3 extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+
            new RaisedButton(
                onPressed: (){
                  print(Navigator.of(context).canPop().toString());
@@ -151,6 +152,33 @@ class Screen3 extends StatelessWidget {
            new RaisedButton(onPressed:(){
              Navigator.of(context).pushNamed('/screen4');
            } ,child: new Text("Push to Screen 4"),),
+
+           new RaisedButton(
+             onPressed: (){
+               Navigator.push(context, new PageRouteBuilder(
+                   opaque: false,
+                   pageBuilder: (BuildContext context, _, __) {
+                     return new Scaffold(
+                       body: new Center(
+                         child: new Container(
+                             child: new Center(child: new Text('My PageRoute'))),
+                       ),
+                     );
+                   },
+                   transitionsBuilder: (___, Animation<double> animation, ____, Widget child) {
+                     return new FadeTransition(
+                       opacity: animation,
+                       child: new RotationTransition(
+                         turns: new Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+                         child: child,
+                       ),
+                     );
+                   }
+               ));
+             },
+             child: new Text("Page Route Builder"),),
+
+
           ],
         ),
       ) ,
