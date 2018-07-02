@@ -10,5 +10,5 @@ Experiment with the project to learn more about how Navigator methods like pushR
 The article gives an overview of Navigators in Flutter along with its implementation details and usages. 
 
 
-#### Author
+## Author
 Pooja Bhaumik
